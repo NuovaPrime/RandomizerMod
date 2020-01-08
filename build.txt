@@ -1,0 +1,3 @@
+displayName = Terraria Randomizer Mod
+author = NuovaPrime, Fargowilta
+version = 0.1
