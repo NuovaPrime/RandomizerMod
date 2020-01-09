@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RandomizerMod
@@ -54,9 +56,9 @@ namespace RandomizerMod
             {
                 if (item.damage > 1)
                 {
+                    item.damage = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
                     item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);
-                    item.damage = Main.rand.Next(0, 50000);
-                    item.knockBack = Main.rand.Next(0, 10000);
+                    item.knockBack = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
                     item.useTime = Main.rand.Next(2, 500);
                     item.crit = Main.rand.Next(0, 100);
                 }
@@ -65,8 +67,10 @@ namespace RandomizerMod
             {
                 Main.itemTexture[item.type] = Main.itemTexture[Main.rand.Next(ItemLoader.ItemCount)];
             }
-
-
+            if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
+            {
+                item.UseSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Item, "Item" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.Item)));
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RandomizerMod
@@ -54,7 +55,12 @@ namespace RandomizerMod
             if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization)
             {
                 npc.aiStyle = Main.rand.Next(Main.npc.Length);
-            }            
+            }
+            if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
+            {
+                npc.HitSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.NPCHit, "NPCHit" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.NPCHit)));
+                npc.DeathSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.NPCKilled, "NPCDeath" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.NPCKilled)));
+            }
         }
     }
 }

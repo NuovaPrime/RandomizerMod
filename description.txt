@@ -1,1 +1,22 @@
+All configs are off by default, make sure to turn the ones you want on.
 This randomizer mod lets you randomize many features of your game to create interesting playthroughs or even just chaos, some of the features that can be randomized include:
+
+
+NPC AI Randomization - Lets you randomize the AI of all enemies and creatures spawned, meaning you can have a bunny with bat AI or a demon eye with skeletron ai.
+
+Item & NPC Name Randomization - Randomizes the names of all items and npcs, creating some pretty wacky names.
+
+Item Stats Randomization - Randomizes the damage, knockback, use speed and projectile firing of all weapons, it tends to roll lower values than higher ones, so don't worry about balance.
+
+Item Sprites Randomization - Randomizes the sprites of all items to make one item have the sprite of a different item, so you can have a muramasa with the sprite of a mushroom.
+
+Item & NPC Sound Randomization - Randomizes the use sounds of items, and the hit and death sounds of npcs.
+
+Projectile AI Randomization - Randomizes the AI of all projectiles, creating some really odd projectiles.
+
+
+Everything rerandomizes whenever you reload your mods/game, so be warned of that.
+
+
+Credits to fargowilta, the thorium discord and the tmodloader discord for giving me some ideas as I made this.
+Credit to catsounds for the mod icon.

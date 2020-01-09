@@ -25,8 +25,8 @@ namespace RandomizerMod
         [ReloadRequired]
         public bool NameRandomization { get; set; }
 
-        [Label("Item Stats Randomization")]
-        [Tooltip("Toggle the randomization of stats for all items.")]
+        [Label("Weapon Stats Randomization")]
+        [Tooltip("Toggle the randomization of stats for all Weapons.")]
         [DefaultValue(false)]
         [ReloadRequired]
         public bool StatsRandomization { get; set; }
@@ -43,16 +43,16 @@ namespace RandomizerMod
         [ReloadRequired]
         public bool SoundsRandomization { get; set; }
 
-        [Label("Tile Texture Randomization")]
-        [Tooltip("Toggle the randomization of textures for all tiles.")]
+        [Label("Projectile Ai Randomization")]
+        [Tooltip("Toggle the randomization of ai for all projectiles.")]
         [DefaultValue(false)]
         [ReloadRequired]
-        public bool TilesRandomization { get; set; }
+        public bool ProjAIRandomization { get; set; }
 
-        [Label("Chest Contents Randomization")]
+        /*[Label("Chest Contents Randomization")]
         [Tooltip("Toggle the randomization of items in all generated chests.")]
         [DefaultValue(false)]
         [ReloadRequired]
-        public bool ChestsRandomization { get; set; }
+        public bool ChestsRandomization { get; set; }*/
     }
 }
