@@ -54,7 +54,7 @@ namespace RandomizerMod
             }
             if (ModContent.GetInstance<RandomizerModConfig>().StatsRandomization)
             {
-                if (item.damage > 1)
+                if (item.damage > 1 && item.pick == 0 && item.axe == 0 && item.hammer == 0)
                 {
                     item.damage = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
                     item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);

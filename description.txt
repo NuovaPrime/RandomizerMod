@@ -17,6 +17,11 @@ Projectile AI Randomization - Randomizes the AI of all projectiles, creating som
 
 Everything rerandomizes whenever you reload your mods/game, so be warned of that.
 
+Changelog:
+
+V1.0.2
+
+1) Made it so the item stat randomization doesn't apply to tools.
 
 Credits to fargowilta, the thorium discord and the tmodloader discord for giving me some ideas as I made this.
 Credit to catsounds for the mod icon.
