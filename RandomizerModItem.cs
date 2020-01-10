@@ -14,62 +14,65 @@ namespace RandomizerMod
     {
         public override void SetDefaults(Item item)
         {
-            base.SetDefaults(item);
-            if (ModContent.GetInstance<RandomizerModConfig>().NameRandomization)
+            if (!Main.dedServ)
             {
-                string name1 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
-                if (name1.Contains(' '))
+                base.SetDefaults(item);
+                if (ModContent.GetInstance<RandomizerModConfig>().NameRandomization)
                 {
-                    string[] splitName = name1.Split(' ');
-                    if (Main.rand.Next(2) == 0)
-                        name1 = splitName.First();
-                    else
-                        name1 = splitName.Last();
-                }
-                string name2 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
-                if (name2.Contains(' '))
-                {
-                    string[] splitName = name2.Split(' ');
-                    if (Main.rand.Next(2) == 0)
-                        name2 = splitName.First();
-                    else
-                        name2 = splitName.Last();
-                }
-                if (Main.rand.Next(2) == 0)
-                    item.SetNameOverride(name1 + " " + name2);
-                else
-                {
-                    string name3 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
-                    if (name3.Contains(' '))
+                    string name1 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
+                    if (name1.Contains(' '))
                     {
-                        string[] splitName = name3.Split(' ');
+                        string[] splitName = name1.Split(' ');
                         if (Main.rand.Next(2) == 0)
-                            name3 = splitName.First();
+                            name1 = splitName.First();
                         else
-                            name3 = splitName.Last();
+                            name1 = splitName.Last();
                     }
-                    item.SetNameOverride(name1 + " " + name2 + " " + name3);
+                    string name2 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
+                    if (name2.Contains(' '))
+                    {
+                        string[] splitName = name2.Split(' ');
+                        if (Main.rand.Next(2) == 0)
+                            name2 = splitName.First();
+                        else
+                            name2 = splitName.Last();
+                    }
+                    if (Main.rand.Next(2) == 0)
+                        item.SetNameOverride(name1 + " " + name2);
+                    else
+                    {
+                        string name3 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
+                        if (name3.Contains(' '))
+                        {
+                            string[] splitName = name3.Split(' ');
+                            if (Main.rand.Next(2) == 0)
+                                name3 = splitName.First();
+                            else
+                                name3 = splitName.Last();
+                        }
+                        item.SetNameOverride(name1 + " " + name2 + " " + name3);
+                    }
+
                 }
-                
-            }
-            if (ModContent.GetInstance<RandomizerModConfig>().StatsRandomization)
-            {
-                if (item.damage > 1 && item.pick == 0 && item.axe == 0 && item.hammer == 0)
+                if (ModContent.GetInstance<RandomizerModConfig>().StatsRandomization)
                 {
-                    item.damage = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
-                    item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);
-                    item.knockBack = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
-                    item.useTime = Main.rand.Next(2, 500);
-                    item.crit = Main.rand.Next(0, 100);
+                    if (item.damage > 1 && item.pick == 0 && item.axe == 0 && item.hammer == 0)
+                    {
+                        item.damage = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
+                        item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);
+                        item.knockBack = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
+                        item.useTime = Main.rand.Next(2, 500);
+                        item.crit = Main.rand.Next(0, 100);
+                    }
                 }
-            }
-            if (ModContent.GetInstance<RandomizerModConfig>().ItemSpritesRandomization)
-            {
-                Main.itemTexture[item.type] = Main.itemTexture[Main.rand.Next(ItemLoader.ItemCount)];
-            }
-            if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
-            {
-                item.UseSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Item, "Item" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.Item)));
+                if (ModContent.GetInstance<RandomizerModConfig>().ItemSpritesRandomization)
+                {
+                    Main.itemTexture[item.type] = Main.itemTexture[Main.rand.Next(ItemLoader.ItemCount)];
+                }
+                if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
+                {
+                    item.UseSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Item, "Item" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.Item)));
+                }
             }
         }
     }

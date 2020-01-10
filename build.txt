@@ -1,4 +1,4 @@
 displayName = Terraria Randomizer Mod
 author = NuovaPrime, Fargowilta
-version = 1.0.2
+version = 1.0.3
 homepage = https://forums.terraria.org/index.php?threads/terraria-randomizer-mod.85281/

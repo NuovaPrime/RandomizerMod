@@ -19,6 +19,10 @@ Everything rerandomizes whenever you reload your mods/game, so be warned of that
 
 Changelog:
 
+V1.0.3
+
+1) Made the mod multiplayer compatible, whoops.
+
 V1.0.2
 
 1) Made it so the item stat randomization doesn't apply to tools.
