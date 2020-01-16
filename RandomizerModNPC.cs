@@ -63,7 +63,7 @@ namespace RandomizerMod
             }
         }
         
-                public void RandomiseShops(Chest shop, ref int nextSlot)
+        public void RandomiseShops(Chest shop, ref int nextSlot)
         {
             int numberitems = Main.rand.Next(1, 40);
             List<int> itemlist = new List<int>();
@@ -85,6 +85,7 @@ namespace RandomizerMod
                 nextSlot++;
             }
         }
+        
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
             for (int i = 0; i < 40; i++)
