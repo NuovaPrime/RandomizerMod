@@ -48,6 +48,12 @@ namespace RandomizerMod
         [DefaultValue(false)]
         [ReloadRequired]
         public bool ProjAIRandomization { get; set; }
+        
+        [Label("Town NPC Shop Randomization")]
+        [Tooltip("Toggle the randomization of shops for all npcs.")]
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool NPCShopRandomization { get; set; }
 
         /*[Label("Chest Contents Randomization")]
         [Tooltip("Toggle the randomization of items in all generated chests.")]
