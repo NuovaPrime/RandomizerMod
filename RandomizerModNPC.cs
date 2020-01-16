@@ -88,12 +88,15 @@ namespace RandomizerMod
         
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            for (int i = 0; i < 40; i++)
+            if (ModContent.GetInstance<RandomizerModConfig>().NPCShopRandomization)
             {
-                shop.item[i].TurnToAir();
+                for (int i = 0; i < 40; i++)
+                {
+                    shop.item[i].TurnToAir();
+                }
+                nextSlot = 0;
+                RandomiseShops(shop, ref nextSlot);
             }
-            nextSlot = 0;
-            RandomiseShops(shop, ref nextSlot);
         }
     }
 }
