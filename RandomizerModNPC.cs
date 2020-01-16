@@ -62,5 +62,37 @@ namespace RandomizerMod
                 npc.DeathSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.NPCKilled, "NPCDeath" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.NPCKilled)));
             }
         }
+        
+                public void RandomiseShops(Chest shop, ref int nextSlot)
+        {
+            int numberitems = Main.rand.Next(1, 40);
+            List<int> itemlist = new List<int>();
+            int[] itemarray;
+            Item item = new Item();
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                item.SetDefaults(i);
+                if (item.type != 0)
+                {
+                    itemlist.Add(i);
+                }
+            }
+            itemarray = itemlist.ToArray();
+            for (int i = 0; i < numberitems; i++)
+            {
+                shop.item[nextSlot].SetDefaults(Main.rand.Next(itemarray));
+                shop.item[nextSlot].value = Main.rand.Next(1, 1000000);
+                nextSlot++;
+            }
+        }
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        {
+            for (int i = 0; i < 40; i++)
+            {
+                shop.item[i].TurnToAir();
+            }
+            nextSlot = 0;
+            RandomiseShops(shop, ref nextSlot);
+        }
     }
 }
