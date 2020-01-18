@@ -13,27 +13,30 @@ namespace RandomizerMod
     {
         public override void PostWorldGen()
         {
-            for (int x = 0; x < Main.maxTilesX; x++)
+            if (ModContent.GetInstance<RandomizerModConfig>().WorldGenRandomization)
             {
-                for (int y = (int)Main.worldSurface / 16; y < Main.maxTilesY; y++)
+                for (int x = 0; x < Main.maxTilesX; x++)
                 {
-                    if (WorldGen.InWorld(x, y))
+                    for (int y = (int)Main.worldSurface / 16; y < Main.maxTilesY; y++)
                     {
-                        ushort id = (ushort)Main.rand.Next(TileLoader.TileCount);
-                        while (Main.tileFrameImportant[id] || id == TileID.GoldCoinPile || id == TileID.SilverCoinPile || id == TileID.CopperCoinPile || id == TileID.PlatinumCoinPile)
+                        if (WorldGen.InWorld(x, y))
                         {
-                            id = (ushort)Main.rand.Next(TileLoader.TileCount);
-                        }
-                        if (!Main.tileFrameImportant[id])
-                        {
-                            if (y > 40 && y < Main.maxTilesY - 40 && x > 40 && x < Main.maxTilesX - 40)
+                            ushort id = (ushort)Main.rand.Next(TileLoader.TileCount);
+                            while (Main.tileFrameImportant[id] || id == TileID.GoldCoinPile || id == TileID.SilverCoinPile || id == TileID.CopperCoinPile || id == TileID.PlatinumCoinPile)
                             {
-                                if(!Main.tileFrameImportant[Main.tile[x, y].type])
+                                id = (ushort)Main.rand.Next(TileLoader.TileCount);
+                            }
+                            if (!Main.tileFrameImportant[id])
+                            {
+                                if (y > 40 && y < Main.maxTilesY - 40 && x > 40 && x < Main.maxTilesX - 40)
                                 {
-                                    WorldGen.TileRunner(x, y, (double)WorldGen.genRand.Next(1, 8), WorldGen.genRand.Next(1, 8), id, false, 0f, 0f, false, true);
-                                }
-                            }                        
-                        }  
+                                    if(!Main.tileFrameImportant[Main.tile[x, y].type])
+                                    {
+                                        WorldGen.TileRunner(x, y, (double)WorldGen.genRand.Next(1, 8), WorldGen.genRand.Next(1, 8), id, false, 0f, 0f, false, true);
+                                    }
+                                }                        
+                            }  
+                        }
                     }
                 }
             }
