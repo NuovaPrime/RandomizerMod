@@ -54,6 +54,12 @@ namespace RandomizerMod
         [DefaultValue(false)]
         [ReloadRequired]
         public bool NPCShopRandomization { get; set; }
+        
+        [Label("World Generation Randomization")]
+        [Tooltip("Toggles the randomization of all tiles generated in a world.")]
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool WorldGenRandomization { get; set; }
 
         /*[Label("Chest Contents Randomization")]
         [Tooltip("Toggle the randomization of items in all generated chests.")]
