@@ -11,10 +11,11 @@ namespace RandomizerMod
 {
     public class RandomizerModNPC : GlobalNPC
     {
+        internal static List<int> ImportantNPCs = new List<int>() { NPCID.LunarTowerNebula, NPCID.LunarTowerSolar, NPCID.LunarTowerStardust, NPCID.LunarTowerVortex, NPCID.CultistArcherBlue, NPCID.CultistDevote, NPCID.CultistTablet, NPCID.VoodooDemon };
         public override void SetDefaults(NPC npc)
         {
             base.SetDefaults(npc);
-            if (ModContent.GetInstance<RandomizerModConfig>().NameRandomization)
+            if (ModContent.GetInstance<RandomizerModConfig>().NPCNameRandomization)
             {
                 string name1 = Lang.GetNPCNameValue(Main.rand.Next(NPCLoader.NPCCount));
                 if (name1.Contains(' '))
@@ -51,10 +52,24 @@ namespace RandomizerMod
                 }
 
             }
-
-            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization)
+            if (ImportantNPCs.Contains(npc.type))
             {
-                npc.aiStyle = Main.rand.Next(Main.npc.Length);
+                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.affectsImportants)
+                {
+                    npc.aiStyle = Main.rand.Next(Main.npc.Length);
+                }
+            }
+            if (npc.boss)
+            {
+                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.affectsBosses)
+                {
+                    npc.aiStyle = Main.rand.Next(Main.npc.Length);
+                }
+            }
+            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.enabled)
+            {
+                if (!npc.boss && !ImportantNPCs.Contains(npc.type))
+                    npc.aiStyle = Main.rand.Next(Main.npc.Length);
             }
             if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
             {
@@ -97,6 +112,15 @@ namespace RandomizerMod
                 nextSlot = 0;
                 RandomiseShops(shop, ref nextSlot);
             }
+        }
+
+        public override void NPCLoot(NPC npc)
+        {
+            if (ModContent.GetInstance<RandomizerModConfig>().NPCLootRandomization)
+            {
+                Item.NewItem(npc.position, Main.rand.Next(ItemLoader.ItemCount));
+            }
+            base.NPCLoot(npc);
         }
     }
 }

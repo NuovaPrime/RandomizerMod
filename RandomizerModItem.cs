@@ -17,7 +17,7 @@ namespace RandomizerMod
             if (!Main.dedServ)
             {
                 base.SetDefaults(item);
-                if (ModContent.GetInstance<RandomizerModConfig>().NameRandomization)
+                if (ModContent.GetInstance<RandomizerModConfig>().ItemNameRandomization)
                 {
                     string name1 = Lang.GetItemNameValue(Main.rand.Next(ItemLoader.ItemCount));
                     if (name1.Contains(' '))
