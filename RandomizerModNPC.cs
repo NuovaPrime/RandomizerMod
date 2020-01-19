@@ -54,19 +54,19 @@ namespace RandomizerMod
             }
             if (ImportantNPCs.Contains(npc.type))
             {
-                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.affectsImportants)
+                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.affectsImportants)
                 {
                     npc.aiStyle = Main.rand.Next(Main.npc.Length);
                 }
             }
             if (npc.boss)
             {
-                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.affectsBosses)
+                if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.affectsBosses)
                 {
                     npc.aiStyle = Main.rand.Next(Main.npc.Length);
                 }
             }
-            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomization.enabled)
+            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.enabled)
             {
                 if (!npc.boss && !ImportantNPCs.Contains(npc.type))
                     npc.aiStyle = Main.rand.Next(Main.npc.Length);

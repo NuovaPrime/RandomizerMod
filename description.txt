@@ -25,6 +25,10 @@ Everything rerandomizes whenever you reload your mods/game, so be warned of that
 
 Changelog:
 
+V1.1.1
+
+1) Fixed an issue preventing people from loading the mod after updating.
+
 V1.1.0
 
 1) Added randomization of npc shops, worldgen and npc loot.

@@ -15,7 +15,7 @@ namespace RandomizerMod
 
         [Label("NPC AI Randomization Settings")]
         [Tooltip("Configure the randomization of ai for all npcs.")]
-        public AIRandomizations AIRandomization = new AIRandomizations();
+        public AIRandomizations AIRandomizationSettings = new AIRandomizations();
 
         [Label("Item Name Randomization")]
         [Tooltip("Toggle the randomization of names for all items.")]
