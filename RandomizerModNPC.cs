@@ -80,8 +80,12 @@ namespace RandomizerMod
             itemarray = itemlist.ToArray();
             for (int i = 0; i < numberitems; i++)
             {
+                int id = Main.rand.Next(itemarray);
+                item.SetDefaults(id);
+                int maxstack = item.maxStack;
                 shop.item[nextSlot].SetDefaults(Main.rand.Next(itemarray));
                 shop.item[nextSlot].value = Main.rand.Next(1, 1000000);
+                shop.item[nextSlot].stack = Main.rand.Next(1, maxstack);
                 nextSlot++;
             }
         }
