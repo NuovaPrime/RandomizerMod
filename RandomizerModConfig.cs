@@ -61,10 +61,10 @@ namespace RandomizerMod
         [ReloadRequired]
         public bool WorldGenRandomization { get; set; }
 
-        /*[Label("Chest Contents Randomization")]
+        [Label("Chest Contents Randomization")]
         [Tooltip("Toggle the randomization of items in all generated chests.")]
         [DefaultValue(false)]
         [ReloadRequired]
-        public bool ChestsRandomization { get; set; }*/
+        public bool ChestsRandomization { get; set; }
     }
 }
