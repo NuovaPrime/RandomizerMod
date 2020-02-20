@@ -42,5 +42,42 @@ namespace RandomizerMod
                 }
             }
         }
+        
+        public override void PostWorldGen()
+        {
+            if (ModContent.GetInstance<RandomizerModConfig>().ChestsRandomization) 
+            {
+                int chestcontentamount = Main.rand.Next(1, 40);
+                List<int> chestitems = new List<int>();
+                int[] chestarray;
+                Item item = new Item();
+                for (int i = 0; i < ItemLoader.ItemCount; i++)
+                {
+                    item.SetDefaults(i);
+                    if (item.type != 0)
+                    {
+                        chestitems.Add(i);
+                    }
+                }
+                chestarray = chestitems.ToArray();
+                for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
+                {
+                    Chest chest = Main.chest[chestIndex];      
+                    if (chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers)
+                    {
+                        for (int inventoryIndex = 0; inventoryIndex < chestcontentamount; inventoryIndex++)
+                        {
+                            chest.item[inventoryIndex].TurnToAir();
+                            int id = Main.rand.Next(chestarray);
+                            item.SetDefaults(id);
+                            int maxstack = item.maxStack;
+                            chest.item[inventoryIndex].SetDefaults(id);
+                            chest.item[inventoryIndex].stack = Main.rand.Next(1, maxstack);
+                        }
+                        chestcontentamount = Main.rand.Next(1, 40);
+                    }
+                }
+            }
+        }    
     }
 }
