@@ -41,11 +41,7 @@ namespace RandomizerMod
                     }
                 }
             }
-        }
-        
-        public override void PostWorldGen()
-        {
-            if (ModContent.GetInstance<RandomizerModConfig>().ChestsRandomization) 
+            if (ModContent.GetInstance<RandomizerModConfig>().ChestsRandomization)
             {
                 int chestcontentamount = Main.rand.Next(1, 40);
                 List<int> chestitems = new List<int>();
@@ -62,7 +58,7 @@ namespace RandomizerMod
                 chestarray = chestitems.ToArray();
                 for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
                 {
-                    Chest chest = Main.chest[chestIndex];      
+                    Chest chest = Main.chest[chestIndex];
                     if (chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers)
                     {
                         for (int inventoryIndex = 0; inventoryIndex < chestcontentamount; inventoryIndex++)
@@ -78,6 +74,6 @@ namespace RandomizerMod
                     }
                 }
             }
-        }    
+        }
     }
 }

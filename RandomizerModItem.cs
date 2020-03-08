@@ -14,7 +14,7 @@ namespace RandomizerMod
     {
         public override void SetDefaults(Item item)
         {
-            if (!Main.dedServ)
+            if (!Main.dedServ && !Main.gameMenu)
             {
                 base.SetDefaults(item);
                 if (ModContent.GetInstance<RandomizerModConfig>().ItemNameRandomization)
@@ -59,10 +59,17 @@ namespace RandomizerMod
                     if (item.damage > 1 && item.pick == 0 && item.axe == 0 && item.hammer == 0)
                     {
                         item.damage = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
-                        item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);
                         item.knockBack = Main.rand.Next(10, 60) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(20, 100) + (Main.rand.Next(2) == 0 ? Main.rand.Next(40, 200) : 0)) : 0);
-                        item.useTime = Main.rand.Next(2, 500);
+                        item.useTime = Main.rand.Next(10, 20) + (Main.rand.Next(2) == 0 ? (Main.rand.Next(10, 40) + (Main.rand.Next(2) == 0 ? Main.rand.Next(10, 40) : 0)) : 0);
                         item.crit = Main.rand.Next(0, 100);
+                    }
+                }
+                if (ModContent.GetInstance<RandomizerModConfig>().RandomProjRandomization)
+                {
+                    if (item.damage > 1 && item.pick == 0 && item.axe == 0 && item.hammer == 0)
+                    {
+                        item.shoot = Main.rand.Next(ProjectileLoader.ProjectileCount);
+                        item.shootSpeed = Main.rand.NextFloat(5f, 30f);
                     }
                 }
                 if (ModContent.GetInstance<RandomizerModConfig>().ItemSpritesRandomization)

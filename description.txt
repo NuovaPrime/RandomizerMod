@@ -25,6 +25,15 @@ Everything rerandomizes whenever you reload your mods/game, so be warned of that
 
 Changelog:
 
+V1.2.0
+
+1) Added the ability to make only bosses drop a random item, chest randomization, the ability to override immortality on enemies, as well as some meme settings for AI.
+2) Changed usetime randomization to also have a better chance to roll lower values.
+3) Split off randomized projectiles from item stats randomization into it's own config.
+4) Fixed a crash with item sprites randomization and the mod browser.
+5) Made the eternia portal and crystal part of the "important npc's" config option for AI randomization.
+6) Made most of the config options not force a reload.
+
 V1.1.1
 
 1) Fixed an issue preventing people from loading the mod after updating.

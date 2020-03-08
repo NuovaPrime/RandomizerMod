@@ -11,7 +11,7 @@ namespace RandomizerMod
 {
     public class RandomizerModNPC : GlobalNPC
     {
-        internal static List<int> ImportantNPCs = new List<int>() { NPCID.LunarTowerNebula, NPCID.LunarTowerSolar, NPCID.LunarTowerStardust, NPCID.LunarTowerVortex, NPCID.CultistArcherBlue, NPCID.CultistDevote, NPCID.CultistTablet, NPCID.VoodooDemon };
+        internal static List<int> ImportantNPCs = new List<int>() { NPCID.LunarTowerNebula, NPCID.LunarTowerSolar, NPCID.LunarTowerStardust, NPCID.LunarTowerVortex, NPCID.CultistArcherBlue, NPCID.CultistDevote, NPCID.CultistTablet, NPCID.VoodooDemon, NPCID.DD2EterniaCrystal, NPCID.DD2LanePortal };
         public override void SetDefaults(NPC npc)
         {
             base.SetDefaults(npc);
@@ -68,13 +68,32 @@ namespace RandomizerMod
             }
             if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.enabled)
             {
-                if (!npc.boss && !ImportantNPCs.Contains(npc.type))
+                //gross code incoming
+                string forcedAI = ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.MemeAIRandomizationSettings.ForcedAI;
+                if (forcedAI != "None")
+                {
+                    if (forcedAI == "Goldfish")
+                        npc.aiStyle = 16;
+                    else if (forcedAI == "Spiky Ball")
+                        npc.aiStyle = 20;
+                    //else if (forcedAI == "Pumpking")
+                        //npc.aiStyle = 59;
+                    else if (forcedAI == "Fishron")
+                        npc.aiStyle = 69;
+                    else if (forcedAI == "Bird")
+                        npc.aiStyle = 24;
+                }
+                else if (!npc.boss && !ImportantNPCs.Contains(npc.type))
                     npc.aiStyle = Main.rand.Next(Main.npc.Length);
             }
             if (ModContent.GetInstance<RandomizerModConfig>().SoundsRandomization)
             {
                 npc.HitSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.NPCHit, "NPCHit" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.NPCHit)));
                 npc.DeathSound = mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.NPCKilled, "NPCDeath" + Main.rand.Next(SoundLoader.SoundCount(Terraria.ModLoader.SoundType.NPCKilled)));
+            }
+            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.MemeAIRandomizationSettings.RandomSize)
+            {
+                npc.scale = Main.rand.NextFloat(0.1f, 3f);
             }
         }
         
@@ -116,11 +135,35 @@ namespace RandomizerMod
 
         public override void NPCLoot(NPC npc)
         {
-            if (ModContent.GetInstance<RandomizerModConfig>().NPCLootRandomization)
+            if (ModContent.GetInstance<RandomizerModConfig>().NPCLootRandomization.enabled)
             {
-                Item.NewItem(npc.position, Main.rand.Next(ItemLoader.ItemCount));
+                if (ModContent.GetInstance<RandomizerModConfig>().NPCLootRandomization.bossesOnly)
+                {
+                    if (npc.boss)
+                    {
+                        Item.NewItem(npc.position, Main.rand.Next(ItemLoader.ItemCount));
+                    }
+                }
+                else
+                {
+                    Item.NewItem(npc.position, Main.rand.Next(ItemLoader.ItemCount));
+                }            
             }
             base.NPCLoot(npc);
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+            if (ModContent.GetInstance<RandomizerModConfig>().AIRandomizationSettings.overridesImmortality)
+            {
+                if (npc.immortal || npc.dontTakeDamage || npc.dontTakeDamageFromHostiles)
+                {
+                    npc.immortal = false;
+                    npc.dontTakeDamage = false;
+                    npc.dontTakeDamageFromHostiles = false;
+                }
+            }
         }
     }
 }
